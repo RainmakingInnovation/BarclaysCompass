@@ -1612,12 +1612,16 @@
         .attr("x", -titleLogoWidth / 2)
         .style("display", "none");
   
-      d3.csv("barclays.csv").then(function(data) {
+      d3.csv("barclaysNew.csv").then(function(data) {
         data = data.filter(row => row['Founded'].trim() != '#N/A' && row['Founded'].trim() != '')
         data.forEach(row => {
           if(row['Mega theme'].trim() == '' || row['Mega theme'].trim() == '#N/A'){
             row['Mega theme'] = 'Uncategorized'
           }
+        });
+
+        data = data.filter(function(d) {
+          return +d["Founded"] >= 2005;
         });
 
         var transform = d3.geoTransform({ point: projectPoint });
