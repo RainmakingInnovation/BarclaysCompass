@@ -1616,12 +1616,12 @@
         data = data.filter(row => row['Founded'].trim() != '#N/A' && row['Founded'].trim() != '')
         data.forEach(row => {
           if(row['Mega theme'].trim() == '' || row['Mega theme'].trim() == '#N/A'){
-            row['Mega theme'] = 'Uncategorized'
+            row['Mega theme'] = 'Uncategorized';
           }
         });
 
         data = data.filter(function(d) {
-          return +d["Founded"] >= 2005;
+          return +d["Founded"] >= 2005 && d["Mega theme"] != 'Uncategorized';
         });
 
         var transform = d3.geoTransform({ point: projectPoint });
